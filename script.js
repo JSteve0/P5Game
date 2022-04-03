@@ -14,5 +14,6 @@ function setup() {
 function draw() {
   background('black');
   stroke('red');
+  fill('red')
   s.display();
 }
