@@ -8,9 +8,9 @@ class Sprite {
   }
 
   display() {
-    rect(this.x, this.y, this.width, this.height)
+    image(this.img, this.x, this.y, this.width, this.height);
   }
-
+  
   getX() {
     return this.x;
   }

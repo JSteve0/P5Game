@@ -5,7 +5,28 @@ class NPC extends Sprite {
     this.dy = dy;
   }
 
+  //Updates position then draws the object.
+  display() {
+    this.update();
+    rect(this.x, this.y, this.width, this.height);
+  }
+
+  //Updates current position based on current velocity.
   update() {
-    display();
+    this.x += this.dx;
+    this.y += this.dy;
+  }
+
+  getDx() {
+    return this.dx;
+  }
+
+  getDy() {
+    return this.dy;
+  }
+  
+  setSpeed(dx, dy) {
+    this.dx = dx;
+    this.dy = dy;
   }
 }
