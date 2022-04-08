@@ -24,9 +24,17 @@ class NPC extends Sprite {
   getDy() {
     return this.dy;
   }
-  
-  setSpeed(dx, dy) {
+
+  setDx(dx) {
     this.dx = dx;
+  }
+  
+  setDy(dy) {
     this.dy = dy;
+  }
+  
+  setVelocity(dx, dy) {
+    this.setDx(dx);
+    this.setDy(dy);
   }
 }

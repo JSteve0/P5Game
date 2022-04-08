@@ -2,25 +2,21 @@ keys = [];
 
 function processKeys() {
   if (gameState == INTRO) {
-    if (keys["A".charCodeAt(0)]) {
+
+  } 
+  else if (gameState == PLAYING) {
+    if ((keys["A".charCodeAt(0)] || keys[LEFT_ARROW]) && !player.getCollidesLeft()) {
       player.moveLeft();
       camera.moveLeft(player.getX(), player.getDx());
     }
-    if (keys["D".charCodeAt(0)]) {
+    if ((keys["D".charCodeAt(0)] || keys[RIGHT_ARROW]) && !player.getCollidesRight()) {
       player.moveRight();
       camera.moveRight(player.getX(), player.getDx());
     }
-    if (keys["W".charCodeAt(0)]) {
-      player.moveUp();
-      //camera.moveUp(player.getDy());
-    }
-    if (keys["S".charCodeAt(0)]) {
+    if (keys["S".charCodeAt(0)] || keys[DOWN_ARROW]) {
       player.moveDown();
-      //camera.moveDown(-player.getDy());
+      camera.moveDown(-player.getDy());
     }
-  } 
-  else if (gameState == PLAYING) {
-    
   }
   else if (gameState == OUTRO) {
 
@@ -44,7 +40,10 @@ function keyTypedOnce() {
     
   } 
   else if (gameState == PLAYING) {
-    
+    if ((keys["W".charCodeAt(0)] || keys[UP_ARROW])) {
+      player.moveUp();
+      camera.moveUp(player.getDy());
+    }
   }
   else if (gameState == OUTRO) {
     

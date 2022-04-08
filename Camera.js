@@ -21,11 +21,11 @@ class Camera {
   }
 
   moveUp(dy) {
-    this.y += dy
+    //this.y += dy
   }
   
   moveDown(dy) {
-    this.y += dy
+    //this.y += dy
   }
 
   getX() {

@@ -19,6 +19,14 @@ class Sprite {
     return this.y;
   }
 
+  setX(x) {
+    this.x = x;
+  }
+
+  setY(y) {
+    this.y = y;
+  }
+
   getWidth() {
     return this.width;
   }
