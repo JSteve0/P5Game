@@ -13,10 +13,6 @@ function processKeys() {
       player.moveRight();
       camera.moveRight(player.getX(), player.getDx());
     }
-    if (keys["S".charCodeAt(0)] || keys[DOWN_ARROW]) {
-      player.moveDown();
-      camera.moveDown(-player.getDy());
-    }
   }
   else if (gameState == OUTRO) {
 
@@ -41,7 +37,7 @@ function keyTypedOnce() {
   } 
   else if (gameState == PLAYING) {
     if ((keys["W".charCodeAt(0)] || keys[UP_ARROW])) {
-      player.moveUp();
+      player.jump();
       camera.moveUp(player.getDy());
     }
   }

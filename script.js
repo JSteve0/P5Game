@@ -12,9 +12,19 @@ let camera;
 
 let scene;
 
+let coins = [];
+
 let objects = [];
 
-let blockImage;
+let zombies = [];
+
+let blockImg;
+let coinImg;
+//let leftJohnImage;
+let zombieRightImg;
+let leftJumpImg;
+let rightJumpImg;
+let johnImg = [];
 
 let INTRO = 0;
 let PLAYING = 1;
@@ -25,7 +35,12 @@ let gameState = PLAYING;
 
 function preload() {
   //Intializes image vars
-  blockImage = loadImage('Images/Block.png');
+  blockImg = loadImage('Images/block.png');
+  coinImg = loadImage('Images/music_note.gif');
+  johnImg[0] = loadImage('Images/john_standing.gif');
+  johnImg[1] = loadImage('Images/john_jump.png');
+  zombieRightImg = loadImage('Images/zombie_right.gif');
+  zombieLeftImg = loadImage('Images/zombie_left.gif');
 }
 
 //Setup objects, window, and vars

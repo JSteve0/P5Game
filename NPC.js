@@ -1,6 +1,7 @@
 class NPC extends Sprite {
-  constructor(x, y, width, height, dx, dy, img = null) {
+  constructor(x, y, width, height, dx, dy, img) {
     super(x, y, width, height)
+    this.img = img;
     this.dx = dx;
     this.dy = dy;
   }

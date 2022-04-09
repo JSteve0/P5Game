@@ -1,15 +1,15 @@
 class Zombie extends NPC {
     
-  constructor(x, y, width, height, dx, dy, img = null) {
+  constructor(x, y, width, height, dx, dy, img) {
     super(x, y, width, height, dx, dy, img);
-    this.rightBound = windowWidth;
+    this.rightBound = 0;
     this.leftBound = 0;
     this.isRight = true;
   }
 
   display() {
     this.update()
-    rect(this.x, this.y, this.width, this.height);
+    image(this.img, this.x, this.y, this.width, this.height);
     this.horizontalBounds();
   }
 

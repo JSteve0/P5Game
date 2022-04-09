@@ -41,6 +41,9 @@ function physicsCollision(object1, object2) {
   if (collidesBottom(object1, object2)) {
     if (object1.getY() + object1.getHeight() != object2.getY()) {
       object1.setY(object2.getY() - object1.getHeight() + 2);
+      //if (object1.getIsRight()) {
+        
+      //}
     }
     object1.setFalling(false);
   } 
@@ -49,4 +52,11 @@ function physicsCollision(object1, object2) {
     object1.setDy(-1);
     object1.setY(object2.getY() + object2.getHeight());
   }
+}
+
+function collides(object1, object2) {
+  return (object1.getX() < object2.getX() + object2.getWidth() &&
+          object1.getX() + object1.getWidth() > object2.getX() &&
+          object1.getY() < object2.getY() + object2.getHeight() &&
+          object1.getY() + object1.getHeight() > object2.getY());
 }
