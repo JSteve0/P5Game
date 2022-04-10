@@ -1,1 +1,17 @@
 html, body {margin: 0; height: 100%; overflow: hidden}
+
+.center {
+  text-align: center;
+  font-size: 30px;
+  color: #0433ff;
+}
+
+canvas {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+  text-align: center;
+}

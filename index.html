@@ -4,19 +4,25 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Game</title>
+    <title>FrostByt3 The Video Game</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
     
-  <body>
+  <body style="background-color:black;">
+
+    <!-- Loading screen -->
+    <div id="p5_loading" class="loadingclass center">
+      <p>Creating sick beats.</p>
+      <img src="Images/john_run.gif" alt="Loading Image">
+    </div>
+    
     <!-- Import p5 library. -->
     <script src="https://cdn.jsdelivr.net/npm/p5@1.3.1/lib/p5.js"></script>
 
-    <!-- Import p5 library. -->
+    <!-- Import source code. -->
     <script src="script.js"></script>
     <script src="Sprite.js"></script>
     <script src="Collision.js"></script>
-    <script src="NPC.js"></script>
     <script src="Player.js"></script>
     <script src="Zombie.js"></script>
     <script src="Camera.js"></script>

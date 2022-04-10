@@ -3,8 +3,8 @@ function collidesTop(object1, object2) {
   let centerX = object1.getX() + (object1.getWidth() / 2);
   return (object1.getY() <= object2.getY() + object2.getHeight() && 
      object1.getY() >= object2.getY() && 
-     centerX <= object2.getX() + object2.getWidth() && 
-     centerX >= object2.getX()) 
+     centerX - (0.3 * object1.getWidth()) <= object2.getX() + object2.getWidth() && 
+     centerX + (0.3 * object1.getWidth()) >= object2.getX()) 
 }
 
 function collidesBottom(object1, object2) {
@@ -13,7 +13,7 @@ function collidesBottom(object1, object2) {
   return (bottomY >= object2.getY() && 
           bottomY <= object2.getY() + object2.getHeight() && 
           object1.getX() + (0.2 * object1.getWidth()) <= object2.getX() + object2.getWidth() && 
-          object1.getX() + object1.getWidth() - (0.2 * object1.getWidth()) >= object2.getX() && 
+          object1.getX() + object1.getWidth() - (0.3 * object1.getWidth()) >= object2.getX() && 
           object1.getDy() <= 0) 
 }
 

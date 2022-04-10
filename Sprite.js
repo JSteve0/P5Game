@@ -1,30 +1,48 @@
 class Sprite {
-  constructor(x, y, width, height, img = null) {
-    this.x = x;
-    this.y = y;
+  
+  constructor(x, y, width, height, img, dx = 0, dy = 0) {
+    //Position
+    this.pos = createVector(x, y);
+    
+    //Size
     this.width = width;
     this.height = height;
+    
+    //Speed 
+    this.velocity = createVector(dx, dy);
+    
+    //Display
     this.img = img;
   }
 
   display() {
-    image(this.img, this.x, this.y, this.width, this.height);
+    this.update();
+    image(this.img, this.pos.x, this.pos.y, this.width, this.height);
   }
+
+  update() {
+    this.pos.x += this.velocity.y;
+    this.pos.y += this.velocity.y
+  }
+
+  /***********************/
+  /* Setters and Getters */
+  /***********************/
   
   getX() {
-    return this.x;
+    return this.pos.x;
   }
 
   getY() {
-    return this.y;
+    return this.pos.y;
   }
 
   setX(x) {
-    this.x = x;
+    this.pos.x = x;
   }
 
   setY(y) {
-    this.y = y;
+    this.pos.y = y;
   }
 
   getWidth() {
@@ -35,13 +53,35 @@ class Sprite {
     return this.height;
   }
 
-  setPosition(x, y) {
-    this.x = x;
-    this.y = y;
+  getDx() {
+    return this.velocity.x;
   }
 
-  setSize(width, height = width) {
+  getDy() {
+    return this.velocity.y;
+  }
+
+  setPosition(x, y) {
+    this.setX(x);
+    this.setY(y);
+  }
+
+  setDx(dx) {
+    this.velocity.x = dx;
+  }
+  
+  setDy(dy) {
+    this.velocity.y = dy;
+  }
+  
+  setVelocity(dx, dy) {
+    this.setDx(dx);
+    this.setDy(dy);
+  }
+
+  setSize(width, height) {
     this.width = width;
     this.height = height;
   }
+  
 }

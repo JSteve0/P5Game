@@ -4,26 +4,12 @@
 
 let blocks = [];
 
-let unit;
-
-let player;
-
-let camera;
-
-let scene;
-
 let coins = [];
 
 let objects = [];
 
 let zombies = [];
 
-let blockImg;
-let coinImg;
-//let leftJohnImage;
-let zombieRightImg;
-let leftJumpImg;
-let rightJumpImg;
 let johnImg = [];
 
 let INTRO = 0;
@@ -39,47 +25,75 @@ function preload() {
   coinImg = loadImage('Images/music_note.gif');
   johnImg[0] = loadImage('Images/john_standing.gif');
   johnImg[1] = loadImage('Images/john_jump.png');
+//kyle code  johnImg[2] = loadImage('Images/john_run.gif');
   zombieRightImg = loadImage('Images/zombie_right.gif');
   zombieLeftImg = loadImage('Images/zombie_left.gif');
 }
 
 //Setup objects, window, and vars
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  let windowXRatio = 16;
+  let windowYRatio = 8;
 
-  frameRate(60);
+  //noCursor();
+
+  if ((windowYRatio / windowXRatio) * windowWidth > windowHeight) {
+    canvasWidth = (windowXRatio / windowYRatio) * windowHeight;
+    canvasHeight = windowHeight;
+    unit = 0.03 * canvasWidth;
+    createCanvas(canvasWidth, canvasHeight);
+  } else {
+    canvasWidth = windowWidth;
+    canvasHeight = (windowYRatio / windowXRatio) * windowWidth
+    unit = 0.03 * canvasWidth;
+    createCanvas(canvasWidth, canvasHeight);
+  }
+
+  //16 width = 9 height
   
-  unit = 0.04 * windowWidth;
+  frameRate(60);
+
+  //unit = 0.04 * windowWidth;
   
   createMap();
 
-  camera = new Camera();
+  frame_Rate = 0;
+  
+  g_camera = new Camera();
   
   scene = new Scene();
 }
 
 function draw() {
   background('grey');
+
+  //Diplay frameRate and update every second
+  push()
+  translate(0, 0);
+  if (frameCount % 60 == 0) frame_Rate = frameRate();
+  text(Number((frame_Rate).toFixed(2)), 0, 10);
+  pop()
   
   //Update Scene
-  translate(camera.getX(), camera.getY());
+  g_camera.update();
 
-  player.setFalling(true);
-  player.setCollidesRight(false);
-  player.setCollidesLeft(false);
+  player.resetPhysics();
   
   //Draw Scene 
   if (gameState === INTRO) {
-    intro();
+    scene.intro();
   } else if (gameState === PLAYING) {
     scene.playing();
   } else if (gameState === OUTTRO) {
-    outro();
+    scene.outro();
   } else if (gameState === PAUSE) {
-    pause();
+    scene.pause();
   }
 
-  //Process keys
+  //Process keys, defined in ProcessKeys.js
   processKeys();
 }
 
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
