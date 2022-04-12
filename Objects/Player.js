@@ -1,6 +1,7 @@
 let IDLE = 0;
 let JUMP = 1;
-//kyle code let RUN = 2;
+//kyle code
+let RUN = 2;
 
 class Player extends Sprite {
   
@@ -12,9 +13,9 @@ class Player extends Sprite {
     this.jumpHeight = 0.17 * height;
     this.startJumpCounter = -1;
     this.jumpCount = this.startJumpCounter;
-
+ 
     //Image variable
-    this.playerImage = this.img[0];
+    this.playerImg = this.img.get("Idle");
     
     //Status variables
     this.collidesRight = false;
@@ -29,41 +30,46 @@ class Player extends Sprite {
     if (!this.isRight) {
       //Flip image and adjust position accordingly.
       scale(-1, 1);
-      image(this.playerImage, -this.pos.x - this.width, this.pos.y, this.width, this.height);
+      image(this.playerImg, -this.pos.x - this.width, this.pos.y, this.width, this.height);
     } else {
-      image(this.playerImage, this.pos.x, this.pos.y, this.width, this.height);
+      image(this.playerImg, this.pos.x, this.pos.y, this.width, this.height);
     }
     pop()
   }
 
   update() {
+    if (this.playerImg != this.img.get("Idle")) {
+      this.img.get("Idle").reset();
+      this.playerImg = this.img.get("Idle");
+    }
     //Always update y based on dy.
     this.pos.y -= this.velocity.y;
     //If falling change dy by g and change image to falling image.
     if (this.isFalling) {
       this.velocity.y -= this.g
-      this.playerImage = this.img[JUMP];
+      this.playerImg = this.img.get("Jump");
     } 
     //Else set dy to 0, reset jump counter, and set image to idle.
     else {
       this.velocity.y = 0;
       this.jumpCount = this.startJumpCounter;
-//kyle code      if (this.isRight != false && this.isRight != true) {
-        this.playerImage = this.img[IDLE];
-//kyle code      }
     }
   }
   
   moveLeft() {
     this.isRight = false;
     this.pos.x -= this.velocity.x;
-//kyle code    this.playerImage = this.img[RUN];
+    if (!this.isFalling) {
+      this.playerImg = this.img.get("Run");
+    }
   }
 
   moveRight() {
     this.isRight = true;
-    this.pos.x += this.velocity.x;
-//kyle code    this.playerImage = this.img[RUN];
+    this.pos.x += this.velocity.x;   
+    if (!this.isFalling) {
+      this.playerImg = this.img.get("Run");
+    }
   }
 
   jump() {
@@ -92,7 +98,10 @@ class Player extends Sprite {
     this.collidesLeft = false;
   }
 
-  // Getters and Setters
+  /***********************/
+  /* Setters and Getters */
+  /***********************/
+  
   
   setFalling(bool) {
     this.isFalling = bool;

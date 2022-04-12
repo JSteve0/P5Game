@@ -1,11 +1,12 @@
 class Camera {
   constructor() {
-    this.pos = createVector(0, 0);
+    this.pos = createVector(10 * unit, -8 * unit);
     this.leftBound = 0.2 * windowWidth;
     this.rightBound = 0.8 * windowWidth;
   }
 
-  update() {
+  update(y) {
+    this.pos.y = -y + 15 * unit - (8 * unit);
     translate(this.pos.x, this.pos.y);
   }
   
@@ -23,11 +24,11 @@ class Camera {
     this.pos.x -= dx;
   }
 
-  moveUp(dy) {
-    //this.y += dy
+  moveUp(y) {
+    this.pos.y = canvasHeight - y
   }
   
-  moveDown(dy) {
-    //this.y += dy
+  moveDown(y) {
+    //this.pos.y += y
   }
 }

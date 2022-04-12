@@ -10,7 +10,11 @@ let objects = [];
 
 let zombies = [];
 
-let johnImg = [];
+let enemies = new Map();
+enemies.set("Zombies", zombies);
+
+//Using map data structure
+let johnImg = new Map();
 
 let INTRO = 0;
 let PLAYING = 1;
@@ -23,9 +27,11 @@ function preload() {
   //Intializes image vars
   blockImg = loadImage('Images/block.png');
   coinImg = loadImage('Images/music_note.gif');
-  johnImg[0] = loadImage('Images/john_standing.gif');
-  johnImg[1] = loadImage('Images/john_jump.png');
-//kyle code  johnImg[2] = loadImage('Images/john_run.gif');
+  
+  johnImg.set("Idle", loadImage('Images/john_standing.gif'));
+  johnImg.set("Run", loadImage('Images/john_run.gif'));
+  johnImg.set("Jump", loadImage('Images/john_jump.png'));
+  
   zombieRightImg = loadImage('Images/zombie_right.gif');
   zombieLeftImg = loadImage('Images/zombie_left.gif');
 }
@@ -40,27 +46,26 @@ function setup() {
   if ((windowYRatio / windowXRatio) * windowWidth > windowHeight) {
     canvasWidth = (windowXRatio / windowYRatio) * windowHeight;
     canvasHeight = windowHeight;
-    unit = 0.03 * canvasWidth;
+    unit = 0.0325 * canvasWidth;
     createCanvas(canvasWidth, canvasHeight);
   } else {
     canvasWidth = windowWidth;
     canvasHeight = (windowYRatio / windowXRatio) * windowWidth
-    unit = 0.03 * canvasWidth;
+    unit = 0.0325 * canvasWidth;
     createCanvas(canvasWidth, canvasHeight);
   }
-
-  //16 width = 9 height
   
   frameRate(60);
 
-  //unit = 0.04 * windowWidth;
-  
+  //Defined in Map.js
   createMap();
 
   frame_Rate = 0;
-  
+
+  //Defined in Camera.js
   g_camera = new Camera();
-  
+
+  //Defined in scene.js
   scene = new Scene();
 }
 
@@ -75,8 +80,9 @@ function draw() {
   pop()
   
   //Update Scene
-  g_camera.update();
 
+  g_camera.update(player.getY())
+  
   player.resetPhysics();
   
   //Draw Scene 
@@ -89,6 +95,7 @@ function draw() {
   } else if (gameState === PAUSE) {
     scene.pause();
   }
+
 
   //Process keys, defined in ProcessKeys.js
   processKeys();

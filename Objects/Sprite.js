@@ -53,6 +53,14 @@ class Sprite {
     return this.height;
   }
 
+  setWidth(w) {
+    return this.width = w;
+  }
+
+  setHeight(h) {
+    return this.height = h;
+  }
+
   getDx() {
     return this.velocity.x;
   }
