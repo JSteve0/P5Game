@@ -1,4 +1,5 @@
-//9 = start of next screen window, helps read map
+// @Author - Justin
+
 //1 = player 
 //2 = block
 //3 = coin (music note)
@@ -55,9 +56,6 @@ function createMap() {
           0.15 * unit, // dx
           0 // dy
         );
-      }
-      else if (map[row][col] === 9) {
-        //map[row].splice(col,1);
       }
     }
   }

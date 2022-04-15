@@ -1,4 +1,5 @@
-//Ass code by me, do not touch!
+// @Author - Justin
+
 function collidesTop(object1, x, y, width, height) {
   let centerX = object1.getX() + (object1.getWidth() / 2);
   return (object1.getY() - (object1.getDy() / 4) <= y + height && 

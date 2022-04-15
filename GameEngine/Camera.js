@@ -1,3 +1,5 @@
+// @Author - Justin
+
 class Camera {
   constructor() {
     this.pos = createVector(10 * unit, -8 * unit);

@@ -1,3 +1,5 @@
+// @Author - Justin
+
 class Sprite {
   
   constructor(x, y, width, height, img, dx = 0, dy = 0) {

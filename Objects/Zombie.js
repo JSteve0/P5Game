@@ -1,3 +1,5 @@
+// @Author - Justin, Kyle
+
 class Zombie extends Sprite {
     
   constructor(x, y, width, height, img, dx, dy) {

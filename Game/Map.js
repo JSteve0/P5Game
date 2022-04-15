@@ -1,4 +1,5 @@
-//9 = start of next screen window, helps read map
+// @Author - GameEngine/CreateMapHelper/CreateMapArray.py
+
 //1 = player 
 //2 = block
 //3 = coin (music note)

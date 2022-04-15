@@ -1,4 +1,6 @@
-//Frostbyt3 Game
+// Frostbyt3 Game
+
+// @Author - Justin, Kyle
 
 //Global vars
 

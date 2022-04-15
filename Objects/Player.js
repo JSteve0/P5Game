@@ -1,3 +1,5 @@
+// @Author - Justin, Kyle
+
 let IDLE = 0;
 let JUMP = 1;
 //kyle code
