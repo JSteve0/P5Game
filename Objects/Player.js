@@ -28,7 +28,7 @@ class Player extends Sprite {
   
   display() {
     //Use push pop to prevent scale from affecting other objects.
-    push()
+    push();
     if (!this.isRight) {
       //Flip image and adjust position accordingly.
       scale(-1, 1);
@@ -36,7 +36,7 @@ class Player extends Sprite {
     } else {
       image(this.playerImg, this.pos.x, this.pos.y, this.width, this.height);
     }
-    pop()
+    pop();
   }
 
   update() {

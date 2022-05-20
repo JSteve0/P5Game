@@ -4,41 +4,30 @@ class Zombie extends Sprite {
     
   constructor(x, y, width, height, img, dx, dy) {
     super(x, y, width, height, img, dx, dy);
-    this.rightBound = 0;
-    this.leftBound = 0;
+    this.rightBound = x + 100;
+    this.leftBound = x - 100;
     this.isRight = true;
   }
 
   display() {
-    this.update()
-    image(this.img, this.pos.x, this.pos.y, this.width, this.height);
-    this.horizontalBounds();
-  }
-
-  update() {
-    this.pos.x += this.velocity.x;
-    this.pos.y += this.velocity.y;
+    super.update();
+    this.checkBounds();
+    push();
+    if (!this.isRight) {
+      //Flip image and adjust position accordingly.
+      scale(-1, 1);
+      image(this.img, -this.pos.x - this.width, this.pos.y, this.width, this.height);
+    } else {
+      image(this.img, this.pos.x, this.pos.y, this.width, this.height);
+    }
+    pop();
   }
   
-  horizontalBounds() {
+  checkBounds() {
     //Left bound || Right bound
-    if (this.pos.x < this.leftBound || this.x + this.width > this.rightBound) {
-      this.pos.y = -this.velocity.y;
+    if ((this.pos.x < this.leftBound && !this.isRight) || (this.pos.x + this.width > this.rightBound && this.isRight)) {
+      this.velocity.x = -this.velocity.x;
+      this.isRight = !this.isRight;
     }
-  }
-
-  changeDirection() {
-    if (this.x < this.rightBound) {
-      this.horizontalBounds();
-//    if (this.currentImg != this.img2) {
-//      this.currentImg = this.img2;
-//    }
-    }  
-    else if (this.x > this.leftBound){
-      this.horizontalBounds();
-//    if (this.currentImg != this.img) {
-//      this.currentImg = this.img;
-//    }
-    } 
   }
 }

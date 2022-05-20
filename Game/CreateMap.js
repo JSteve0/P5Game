@@ -11,7 +11,18 @@
 function createMap() {
   for (let row = map.length - 1; row >= 0; --row) {
     for (let col = 0; col < map[row].length; col++) {
-      if (map[row][col] === 2) {
+      if (map[row][col] === 1) {
+        player = new Player (
+          col * unit, // x
+          canvasHeight - (unit * (map.length - row)), // y
+          1 * unit, // width
+          2 * unit, // height
+          johnImg, // display images
+          0.15 * unit, // dx
+          0 // dy
+        );
+      }
+      else if (map[row][col] === 2) {
         blocks.push(
           new Sprite(
             col * unit, // x
@@ -19,19 +30,6 @@ function createMap() {
             unit, // width
             unit, // height
             blockImg // display image
-          )
-        );
-      }
-      else if (map[row][col] === 4) {
-        zombies.push(
-          new Zombie(
-            col * unit, // x
-            canvasHeight - (unit * (map.length - row)), // y
-            unit, // width
-            2 * unit, // height
-            zombieRightImg, // display image
-            0, // dx 
-            0 // dy
           )
         );
       }
@@ -46,15 +44,17 @@ function createMap() {
           )
         );
       }
-      else if (map[row][col] === 1) {
-        player = new Player (
-          col * unit, // x
-          canvasHeight - (unit * (map.length - row)), // y
-          1 * unit, // width
-          2 * unit, // height
-          johnImg, // display images
-          0.15 * unit, // dx
-          0 // dy
+      else if (map[row][col] === 4) {
+        zombies.push(
+          new Zombie(
+            col * unit, // x
+            canvasHeight - (unit * (map.length - row)), // y
+            unit, // width
+            2 * unit, // height
+            zombieRightImg, // display image
+            1, // dx 
+            0 // dy
+          )
         );
       }
     }

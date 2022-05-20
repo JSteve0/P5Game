@@ -23,8 +23,8 @@ class Sprite {
   }
 
   update() {
-    this.pos.x += this.velocity.y;
-    this.pos.y += this.velocity.y
+    this.pos.x += this.velocity.x;
+    this.pos.y += this.velocity.y;
   }
 
   /***********************/

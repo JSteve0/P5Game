@@ -72,19 +72,17 @@ function setup() {
 }
 
 function draw() {
-  background('grey');
-
-  //Diplay frameRate and update every second
-  push()
-  translate(0, 0);
-  if (frameCount % 60 == 0) frame_Rate = frameRate();
-  text(Number((frame_Rate).toFixed(2)), 0, 10);
-  pop()
+  background('black');
   
   //Update Scene
+  push()
+  g_camera.update(player.getY());
 
-  g_camera.update(player.getY())
-  
+  push();
+  fill('grey');
+  rect(0, -84.5 * unit, 100 * unit, 99.5 * unit);
+  pop();
+
   player.resetPhysics();
   
   //Draw Scene 
@@ -101,8 +99,25 @@ function draw() {
 
   //Process keys, defined in ProcessKeys.js
   processKeys();
+  pop();
+
+  //Diplay frameRate and update every second
+  push();
+  if (frameCount % 60 == 0) frame_Rate = frameRate();
+  text(Number((frame_Rate).toFixed(2)), 0, 10);
+  pop();
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+  if ((windowYRatio / windowXRatio) * windowWidth > windowHeight) {
+    canvasWidth = (windowXRatio / windowYRatio) * windowHeight;
+    canvasHeight = windowHeight;
+    unit = 0.0325 * canvasWidth;
+    resizeCanvas(canvasWidth, canvasHeight);
+  } else {
+    canvasWidth = windowWidth;
+    canvasHeight = (windowYRatio / windowXRatio) * windowWidth
+    unit = 0.0325 * canvasWidth;
+    resizeCanvas(canvasWidth, canvasHeight);
+  }
 }
