@@ -1,6 +1,6 @@
 # Frostbyt3TheVideogame
 
-Play game here https://p5game.justinstevens3.repl.co/ 
+Play game here https://jsteve0.github.io/P5Game/
 
 
 # Team
