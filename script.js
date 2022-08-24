@@ -2,7 +2,7 @@
 
 // @Author - Justin, Kyle
 
-//Global vars
+// Global vars
 
 let blocks = [];
 
@@ -36,6 +36,10 @@ function preload() {
   
   zombieRightImg = loadImage('Images/zombie_right.gif');
   zombieLeftImg = loadImage('Images/zombie_left.gif');
+
+  backgroundImg = loadImage('Images/background.jpg');
+
+  reset = false;
 }
 
 //Setup objects, window, and vars
@@ -62,12 +66,14 @@ function setup() {
   //Defined in Map.js
   createMap();
 
+  numCoins = coins.length;
+
   frame_Rate = 0;
 
   //Defined in Camera.js
   g_camera = new Camera();
 
-  //Defined in scene.js
+  //Defined in Scene.js
   scene = new Scene();
 }
 
@@ -75,12 +81,11 @@ function draw() {
   background('black');
   
   //Update Scene
-  push()
-  g_camera.update(player.getY());
+  push();
+  g_camera.update(player.getX(), player.getY());
 
   push();
-  fill('grey');
-  rect(0, -84.5 * unit, 100 * unit, 99.5 * unit);
+  image(backgroundImg, 0, -84.5 * unit, 100 * unit, 99.5 * unit);
   pop();
 
   player.resetPhysics();
@@ -103,9 +108,25 @@ function draw() {
 
   //Diplay frameRate and update every second
   push();
+
+  let size = canvasHeight * 0.05;
+  textSize(size);
+  
   if (frameCount % 60 == 0) frame_Rate = frameRate();
-  text(Number((frame_Rate).toFixed(2)), 0, 10);
+  text(Number((frame_Rate).toFixed(2)), 0, size);
+
+  text(player.score + "/" + numCoins, canvasWidth - textWidth(player.score + "/" + numCoins) - 0, size);
+  
   pop();
+
+  if (reset) {
+    player = {};
+    blocks = [];
+    coins = [];
+    zombies = [];
+    createMap();
+    reset = false;
+  }
 }
 
 function windowResized() {

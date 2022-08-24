@@ -12,8 +12,8 @@ class Player extends Sprite {
     
     //Physics variables.
     this.g = 0.008 * height;
-    this.jumpHeight = 0.17 * height;
-    this.startJumpCounter = -1;
+    this.jumpHeight = 0.18 * height;
+    this.startJumpCounter = 1;
     this.jumpCount = this.startJumpCounter;
  
     //Image variable
@@ -24,6 +24,7 @@ class Player extends Sprite {
     this.collidesLeft = false;
     this.isFalling = true;
     this.isRight = true;
+    this.score = 0;
   }
   
   display() {
