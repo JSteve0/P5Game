@@ -4,19 +4,32 @@ class Zombie extends Sprite {
     
   constructor(x, y, width, height, img, dx, dy) {
     super(x, y, width, height, img, dx, dy);
-    this.rightBound = x + 100;
-    this.leftBound = x - 100;
+    this.rightBound = x + 3 * unit;
+    this.leftBound = x - 3 * unit;
     this.isRight = true;
   }
 
   display() {
     super.update();
-    this.checkBounds();
+    //this.checkBounds();
     push();
-    if (!this.isRight) {
-      //Flip image and adjust position accordingly.
-      scale(-1, 1);
-      image(this.img, -this.pos.x - this.width, this.pos.y, this.width, this.height);
+    noFill();
+    strokeWeight(3);
+    stroke('red');
+    if (!levelEditor) {
+      if (!this.isRight) {
+        //Flip image and adjust position accordingly.
+        scale(-1, 1);
+        image(this.img, -this.pos.x - this.width, this.pos.y, this.width, this.height);
+        if (hitBoxesCheckBox.checked()) {
+          rect(-this.pos.x - this.width, this.pos.y, this.width, this.height);
+        }
+      } else {
+        image(this.img, this.pos.x, this.pos.y, this.width, this.height);
+        if (hitBoxesCheckBox.checked()) {
+          rect(this.pos.x, this.pos.y, this.width, this.height);
+        }
+      }
     } else {
       image(this.img, this.pos.x, this.pos.y, this.width, this.height);
     }

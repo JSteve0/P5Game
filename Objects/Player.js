@@ -30,12 +30,21 @@ class Player extends Sprite {
   display() {
     //Use push pop to prevent scale from affecting other objects.
     push();
+    noFill();
+    strokeWeight(3);
+    stroke('green');
     if (!this.isRight) {
       //Flip image and adjust position accordingly.
       scale(-1, 1);
       image(this.playerImg, -this.pos.x - this.width, this.pos.y, this.width, this.height);
+      if (hitBoxesCheckBox.checked()) {
+        rect(-this.pos.x - this.width, this.pos.y, this.width, this.height);
+      }
     } else {
       image(this.playerImg, this.pos.x, this.pos.y, this.width, this.height);
+      if (hitBoxesCheckBox.checked()) {
+        rect(this.pos.x, this.pos.y, this.width, this.height);
+      }
     }
     pop();
   }
@@ -46,10 +55,10 @@ class Player extends Sprite {
       this.playerImg = this.img.get("Idle");
     }
     //Always update y based on dy.
-    this.pos.y -= this.velocity.y;
+    this.pos.y -= this.velocity.y * (deltaTime / 1000) * 60;
     //If falling change dy by g and change image to falling image.
     if (this.isFalling) {
-      this.velocity.y -= this.g
+      this.velocity.y -= this.g * (deltaTime / 1000) * 60;;
       this.playerImg = this.img.get("Jump");
     } 
     //Else set dy to 0, reset jump counter, and set image to idle.
@@ -61,7 +70,7 @@ class Player extends Sprite {
   
   moveLeft() {
     this.isRight = false;
-    this.pos.x -= this.velocity.x;
+    this.pos.x -= this.velocity.x * (deltaTime / 1000) * 60;
     if (!this.isFalling) {
       this.playerImg = this.img.get("Run");
     }
@@ -69,7 +78,7 @@ class Player extends Sprite {
 
   moveRight() {
     this.isRight = true;
-    this.pos.x += this.velocity.x;   
+    this.pos.x += this.velocity.x * (deltaTime / 1000) * 60;
     if (!this.isFalling) {
       this.playerImg = this.img.get("Run");
     }

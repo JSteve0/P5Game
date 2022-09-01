@@ -20,11 +20,17 @@ class Sprite {
   display() {
     this.update();
     image(this.img, this.pos.x, this.pos.y, this.width, this.height);
+    if (!levelEditor) {
+      if (hitBoxesCheckBox.checked()) {
+        noFill();
+        rect(this.pos.x, this.pos.y, this.width, this.height);
+      }
+    }
   }
 
   update() {
-    this.pos.x += this.velocity.x;
-    this.pos.y += this.velocity.y;
+    this.pos.x += this.velocity.x * (deltaTime / 1000) * 60;
+    this.pos.y += this.velocity.y * (deltaTime / 1000) * 60;
   }
 
   /***********************/

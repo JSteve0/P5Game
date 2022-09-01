@@ -15,3 +15,81 @@ canvas {
   height: 50%;
   text-align: center;
 }
+
+/* Popup container */
+.popup {
+  position: relative;
+  display: inline-block;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+  visibility: hidden;
+  width: 350px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  margin-left: -175px;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.popup .popuptext .settings-title {
+  padding: 0px;
+  margin: 0px;
+}
+
+p.settings-title {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 50px;
+  font-weight: 700;
+}
+
+h1.settings-title {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 50px;
+  font-weight: 700;
+}
+
+div.check-box {
+  cursor: pointer;
+  margin: 0px 0px 15px 0px 
+}
+
+hr {
+  margin: 0px 0px 20px 0px;
+}
+
+input {
+  cursor: pointer;
+}
+label {
+  cursor: pointer;
+}
+
+.material-icons.md-18 { 
+  font-size: 18px;
+  color: #ffffff 
+  cursor: pointer;
+}
+
+.material-icons.md-24 { 
+  font-size: 24px;
+  color: #ffffff 
+  cursor: pointer;
+}
+
+.material-icons.md-36 { 
+  font-size: 36px;
+  color: #ffffff
+  cursor: pointer;
+}
+
+.material-icons.md-48 { 
+  font-size: 48px;
+  color: #ffffff;
+  cursor: pointer;
+}

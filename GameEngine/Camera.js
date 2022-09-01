@@ -8,7 +8,7 @@ class Camera {
   }
 
   update(x, y) {
-    this.pos.x = -x + windowWidth / 2;
+    this.pos.x = -x + (canvasWidth / 2) - (unit / 2);
     this.pos.y = -y + 15 * unit - (8 * unit);
     translate(this.pos.x, this.pos.y);
   }
