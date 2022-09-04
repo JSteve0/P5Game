@@ -57,8 +57,6 @@ function setup() {
   windowXRatio = 16;
   windowYRatio = 8;
 
-  //noCursor();
-
   let cnv;
 
   if ((windowYRatio / windowXRatio) * windowWidth > windowHeight) {
@@ -88,24 +86,46 @@ function setup() {
   
     //HTML shit
     let settings = createDiv('').size(0.5 * canvasWidth, 0.5 * canvasHeight).position(0.5 * canvasWidth + cnv.elt.getBoundingClientRect().left, cnv.elt.getBoundingClientRect().top + (0.25 * canvasHeight)).class('popup');
-    let settingsSpan = createSpan(
+    settingsSpan = createSpan(
       '<h1 class=\'settings-title\'>Settings'
       + '<hr>')
       .class('popuptext').position(0, 0);
+
+    settingsSpan.parent(settings);
+    settingsSpan.elt.style.visibility = 'hidden';
+    
     frameRateCheckBox = createCheckbox('show framerate', false).class('check-box');
     godModeCheckBox = createCheckbox('godmode', false).class('check-box');
     hitBoxesCheckBox = createCheckbox('hitboxes', false).class('check-box');
-    settingsSpan.parent(settings);
-    settingsSpan.elt.style.visibility = 'hidden';
+
+    godModeCheckBox.elt.style.visibility = 'hidden';
+    
     frameRateCheckBox.parent(settingsSpan);
-    godModeCheckBox.parent(settingsSpan);
     hitBoxesCheckBox.parent(settingsSpan);
-    let settingsSpanButton = createSpan('settings').class("material-icons md-48").position(cnv.elt.getBoundingClientRect().left, cnv.elt.getBoundingClientRect().top + canvasHeight - 48);
-    print(settingsSpan)
+
+    let passwordInput = createInput('Enter cheats password');
+    passwordInput.class('spacing');
+    passwordInput.parent(settingsSpan);
+    passwordInput.size(150);
+    passwordInput.input(function () {
+      if (this.value() === decrypt('6a65727279')) {
+        godModeCheckBox.elt.style.visibility = 'visible';
+      }
+    });
+
+    godModeCheckBox.parent(settingsSpan);
+    
+    settingsSpanButton = createSpan('settings').class("material-icons md-48").position(cnv.elt.getBoundingClientRect().left, cnv.elt.getBoundingClientRect().top + canvasHeight - 48);
     settingsSpanButton.mouseClicked(function () {
-      settingsSpan.elt.style.visibility === 'hidden'
-        ? settingsSpan.elt.style.visibility = 'visible'
-        : settingsSpan.elt.style.visibility = 'hidden'
+      if (settingsSpan.elt.style.visibility === 'hidden') {
+        settingsSpan.elt.style.visibility = 'visible';
+        if (passwordInput.elt.value === decrypt('6a65727279')) {
+          godModeCheckBox.elt.style.visibility = 'visible';
+        }
+      } else {
+        settingsSpan.elt.style.visibility = 'hidden';
+        godModeCheckBox.elt.style.visibility = 'hidden';
+      }
     });
   
     //settingsSpan.elt.style.visibility = 'hidden';
@@ -255,4 +275,20 @@ function windowResized() {
     unit = 0.0325 * canvasWidth;
     resizeCanvas(canvasWidth, canvasHeight);
   }
+}
+
+function decrypt(hex) {
+  var hex = hex.toString();
+  var str = '';
+  for (var i = 0; i < hex.length; i += 2)
+    str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+  return str;
+}
+
+function convertToHex(str) {
+  var hex = '';
+  for(var i = 0; i < str.length; i++) {
+    hex += '' + str.charCodeAt(i).toString(16);
+  }
+  return hex;
 }

@@ -10,7 +10,7 @@ function processKeys() {
   
     } 
       
-    else if (gameState == PLAYING) {
+    else if (gameState == PLAYING && settingsSpan.elt.style.visibility === 'hidden') {
       //Move playler and camera left
       if ((keys["A".charCodeAt(0)] || keys[LEFT_ARROW]) && !player.getCollidesLeft()) {
         player.moveLeft();
@@ -233,11 +233,12 @@ function keyTypedOnce() {
 }
 
 //Key Buffer, do not change.
-
 function keyPressed() {
-  keys[keyCode] = true;
-  keyTypedOnce();
-  return false;
+  if (settingsSpan.elt.style.visibility === 'hidden') {
+    keys[keyCode] = true;
+    keyTypedOnce();
+    return false;
+  }
 }
 
 function keyReleased() {

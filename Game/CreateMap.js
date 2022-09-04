@@ -63,7 +63,7 @@ function createMap(level) {
             col * unit, // x
             canvasHeight - (unit * (map[level].length - row)), // y
             2 * unit, // width
-            2 * unit, // height
+            3 * unit, // height
             jukeboxImg // display image
           )
         );
