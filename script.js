@@ -132,7 +132,7 @@ function setup() {
   
     //Defined in Scene.js
     scene = new Scene();
-    screenText = "Collect all the note blocks to go to the next level";
+    screenText = "Hi Xenia. Collect all the note blocks to go to the next level";
     setTimeout(function () {
       screenText = ""
     }, 3000);
