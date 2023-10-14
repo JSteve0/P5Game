@@ -212,7 +212,7 @@ function draw() {
     pop();
   
     if (reset) {
-      screenText = "Dont Die";
+      screenText = "MAMA!!! Hi Xenia";
       resetMap();
       createMap(currentLevel);
       setTimeout(function () {
