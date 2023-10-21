@@ -212,7 +212,7 @@ function draw() {
     pop();
   
     if (reset) {
-      screenText = "MAMA!!! Hi Xenia!! GOD MODE PASSWORD: jerry";
+      screenText = "MAMA!!! Hi Xenia!! God pass: jerry";
       resetMap();
       createMap(currentLevel);
       setTimeout(function () {
