@@ -212,7 +212,8 @@ function draw() {
     pop();
   
     if (reset) {
-      screenText = "MAMA!!! Hi Xenia";
+      // screenText = "MAMA!!! Hi Xenia";
+      screenText = decrypt('6a65727279')
       resetMap();
       createMap(currentLevel);
       setTimeout(function () {
