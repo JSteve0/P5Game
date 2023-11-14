@@ -47,7 +47,7 @@ function preload() {
 
   //slimeImg = loadImage('Images/slime_left.gif');
 
-  backgroundImg = loadImage('Images/background.jpg');
+  backgroundImg = loadImage('Images/kev_background.jpg');
 
   reset = false;
 }
