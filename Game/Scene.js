@@ -10,9 +10,11 @@ class Scene {
   playing () {
     
     player.display();
-    for (let i = 0; i < blocks.length; ++i) {
-      blocks[i].display();
-    }
+
+    blocks.forEach(block =>
+      block.display()
+    );
+
     for (let i = 0; i < coins.length; ++i) {
       coins[i].display();
       if (collides(player, coins[i])) {
@@ -21,23 +23,28 @@ class Scene {
         player.score++;
       } 
     }
+
+    // Zombie Logic
     for (let i = 0; i < zombies.length; ++i) {
       zombies[i].display();
+
       let zombieGridX = Math.floor((zombies[i].getX() + zombies[i].getWidth() * 0.5) / unit);
       let zombieGridY = map[currentLevel].length - Math.ceil((canvasHeight - zombies[i].getY() - 2) / unit);
-      if (zombies[i].isRight && (map[currentLevel][zombieGridY+0][zombieGridX+1] === 2 || map[currentLevel][zombieGridY+1][zombieGridX] !== 2)) {
+
+      // Flip zombie and change direction if it hits a block
+      if (zombies[i].isRight && (map[currentLevel][zombieGridY][zombieGridX+1] === 2 || map[currentLevel][zombieGridY+1][zombieGridX] !== 2)) {
         zombies[i].isRight = false;
         zombies[i].velocity.x = -zombies[i].velocity.x;
-      } else if (!zombies[i].isRight && (map[currentLevel][zombieGridY+0][zombieGridX-1] === 2 || map[currentLevel][zombieGridY+1][zombieGridX] !== 2)) {
+      } else if (!zombies[i].isRight && (map[currentLevel][zombieGridY][zombieGridX-1] === 2 || map[currentLevel][zombieGridY+1][zombieGridX] !== 2)) {
         zombies[i].isRight = true;
         zombies[i].velocity.x = -zombies[i].velocity.x;
       }
+
       if (!godModeCheckBox.checked() && collides(player, zombies[i]) ) {
         //Do this instead of function because it must happen at end of main loop or bad things happen 😔
         reset = true;
       } 
     }
-    
 
     let playerGridX = Math.floor((player.getX() + player.getWidth() * 0.5) / unit);
     let playerGridY = map[currentLevel].length - Math.ceil((canvasHeight - player.getY()) / unit);
@@ -53,6 +60,7 @@ class Scene {
         //print(row + ", " + column + ", " + map[row][column])
       }
     }
+
     player.update();
     
   }

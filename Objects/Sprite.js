@@ -17,6 +17,9 @@ class Sprite {
     this.img = img;
   }
 
+  /**
+   * Updates the sprite then renders it to the screen.
+   */
   display() {
     this.update();
     image(this.img, this.pos.x, this.pos.y, this.width, this.height);
@@ -28,6 +31,9 @@ class Sprite {
     }
   }
 
+  /**
+   * Updates the position of the sprite based on its velocity and deltaTime.
+   */
   update() {
     this.pos.x += this.velocity.x * (deltaTime / 1000) * 60;
     this.pos.y += this.velocity.y * (deltaTime / 1000) * 60;

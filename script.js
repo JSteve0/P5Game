@@ -4,12 +4,26 @@
 
 // Global vars
 
+/**
+ * @type {Player}
+ */
+let player;
+
+/**
+ * @type {Sprite[]}
+ */
 let blocks = [];
 
+/**
+ * @type {Sprite[]}
+ */
 let coins = [];
 
 let objects = [];
 
+/**
+ * @type {Zombie[]}
+ */
 let zombies = [];
 
 let enemies = new Map();
@@ -18,10 +32,10 @@ enemies.set("Zombies", zombies);
 //Using map data structure
 let johnImg = new Map();
 
-let INTRO = 0;
-let PLAYING = 1;
-let OUTRO = 2;
-let PAUSE = 3;
+const INTRO = 0;
+const PLAYING = 1;
+const OUTRO = 2;
+const PAUSE = 3;
 
 let gameState = PLAYING;
 
@@ -223,12 +237,13 @@ function draw() {
   
     if (player.score === numCoins) {
       resetMap();
+      // TODO: Do something when the player wins. aka when currentLevel === map.length - 1
       if (currentLevel < map.length - 1) {
         currentLevel++;
       }
-      screenText = "Level: " + (currentLevel + 1);
       createMap(currentLevel);
       numCoins = coins.length;
+      screenText = "Level: " + (currentLevel + 1);
       setTimeout(function () {
         screenText = ""
       }, 3000);

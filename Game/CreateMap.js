@@ -8,6 +8,10 @@
 //height - (unit * (map.length - row))
 //unit = 0.04 * windowWidth; for reference, already defined in script
 
+/**
+ * Creates and populates the map with sprites based on the level.
+ * @param {Number} level - The level number to initialize the map with.
+ */
 function createMap(level) {
   for (let row = map[level].length - 1; row >= 0; --row) {
     for (let col = 0; col < map[level][row].length; col++) {
@@ -38,7 +42,7 @@ function createMap(level) {
           new Sprite (
             col * unit, // x
             canvasHeight - (unit * (map[level].length - row)), // y
-            unit, // width 
+            unit, // width
             unit, // height
             coinImg // display image
           )
@@ -52,7 +56,7 @@ function createMap(level) {
             1.5 * unit, // width
             1 * unit, // height
             zombieRightImg, // display image
-            1, // dx 
+            1, // dx
             0 // dy
           )
         );

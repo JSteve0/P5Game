@@ -6,12 +6,12 @@ keys = [];
 //Runs once per frame and processes keys that are currently held down. 
 function processKeys() {
   if (!levelEditor) {
-    if (gameState == INTRO) {
+    if (gameState === INTRO) {
   
     } 
       
-    else if (gameState == PLAYING && settingsSpan.elt.style.visibility === 'hidden') {
-      //Move playler and camera left
+    else if (gameState === PLAYING && settingsSpan.elt.style.visibility === 'hidden') {
+      //Move player and camera left
       if ((keys["A".charCodeAt(0)] || keys[LEFT_ARROW]) && !player.getCollidesLeft()) {
         player.moveLeft();
         g_camera.moveLeft(player.getX(), player.getDx());
@@ -55,7 +55,7 @@ function processKeys() {
       }
     }
       
-    else if (gameState == OUTRO) {
+    else if (gameState === OUTRO) {
   
     }
 
@@ -94,13 +94,13 @@ function processKeys() {
       for (let row = 0; row < 100; row++) {
         output += "\t["
         for (let column = 0; column < 100; column++) {
-          if (column != 99) {
+          if (column !== 99) {
             output += map[map.length-1][row][column] + ",";
           } else {
             output += map[map.length-1][row][column]
           }
         }
-        if (row != 99) {
+        if (row !== 99) {
           output +=  '],\n'
         }
       }
@@ -203,13 +203,13 @@ function mouse() {
 
 //Runs when a key is released
 function keyReleasedOnce() {
-  if (gameState == INTRO) {
+  if (gameState === INTRO) {
 
   } 
-  else if (gameState == PLAYING) {
+  else if (gameState === PLAYING) {
     
   }
-  else if (gameState == OUTRO) {
+  else if (gameState === OUTRO) {
 
   }
 }
@@ -217,22 +217,22 @@ function keyReleasedOnce() {
 //Runs when a key is pressed once
 function keyTypedOnce() {
   if (!levelEditor) {
-    if (gameState == INTRO) {
+    if (gameState === INTRO) {
       
     } 
-    else if (gameState == PLAYING) {
+    else if (gameState === PLAYING) {
       if ((keys["W".charCodeAt(0)] || keys[UP_ARROW])) {
         player.jump();
         g_camera.moveUp(player.getY());
       }
     }
-    else if (gameState == OUTRO) {
+    else if (gameState === OUTRO) {
       
     }
   }
 }
 
-//Key Buffer, do not change.
+// Update keybuffer, do not change.
 function keyPressed() {
   if (settingsSpan.elt.style.visibility === 'hidden') {
     keys[keyCode] = true;
@@ -241,6 +241,7 @@ function keyPressed() {
   }
 }
 
+// Update keybuffer, do not change.
 function keyReleased() {
   keyReleasedOnce();
   keys[keyCode] = false;

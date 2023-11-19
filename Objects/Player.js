@@ -85,7 +85,7 @@ class Player extends Sprite {
   }
 
   jump() {
-    if (this.jumpCount != 0) {
+    if (this.jumpCount !== 0) {
       this.isFalling = true;
       //Set force in y direction equal to jumpHeight.
       this.velocity.y = this.jumpHeight;

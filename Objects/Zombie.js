@@ -13,6 +13,7 @@ class Zombie extends Sprite {
     super.update();
     //this.checkBounds();
     push();
+
     noFill();
     strokeWeight(3);
     stroke('red');
@@ -33,6 +34,7 @@ class Zombie extends Sprite {
     } else {
       image(this.img, this.pos.x, this.pos.y, this.width, this.height);
     }
+
     pop();
   }
   
